@@ -2046,7 +2046,7 @@ impl Function {
 
 impl Default for Function {
     fn default() -> Self {
-        Self::new_no_args("")
+        Self::new_no_args("").unwrap()
     }
 }
 
@@ -6019,7 +6019,7 @@ pub fn global() -> Object {
         // As a result we use the equivalent of this snippet to get a handle to the
         // global object in a sort of roundabout way that should hopefully work in
         // all contexts like ESM, node, browsers, etc.
-        let this = Function::new_no_args("return this")
+        let this = Function::new_no_args("return this").unwrap()
             .call0(&JsValue::undefined())
             .ok();
 
